@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -27,5 +29,12 @@ public class CepController {
             address.addLink();
         }
         return address;
+    }
+
+    @GetMapping
+    public List<Address> getAll() {
+        List<Address> addresses = addressService.getAll();
+        addresses.parallelStream().forEach(e -> e.addLink());
+        return addresses;
     }
 }

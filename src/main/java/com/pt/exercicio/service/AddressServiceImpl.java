@@ -32,7 +32,7 @@ public class AddressServiceImpl implements AddressService{
 
     @Override
     public List<Address> getAll() {
-        return addressRepository.findAll();
+       return addressRepository.findAll();
     }
 
     private Address save(Address address) {
