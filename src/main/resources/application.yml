@@ -1,5 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:exercicio
+    url: jdbc:h2:file:./data/exercicio
     username: sa
     password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
