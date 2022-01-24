@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface AddressService {
     Address getOne(String cep);
-    List<Address> getAll();
+    List<Address> getByAddress(String state, String local, String place);
 }

@@ -35,7 +35,7 @@ public class AddressServiceImplTest {
     @Test
     public void whenGetOneOptionalAddressIsEmptyButCepClientReturnsValue(){
         when(addressRepository.findById(anyString())).thenReturn(Optional.empty());
-        when(cepClient.getCep(anyString())).thenReturn(buildAddress(ID));
+        when(cepClient.getAddress(anyString())).thenReturn(buildAddress(ID));
         when((addressRepository.save(any()))).thenReturn(buildAddress(ID));
         Address address = addressService.getOne(ID);
         verify(addressRepository, times(1)).save(any());
@@ -45,7 +45,7 @@ public class AddressServiceImplTest {
     @Test
     public void whenGetOneOptionalAddressIsEmptyAndCepClientReturnsNull(){
         when(addressRepository.findById(anyString())).thenReturn(Optional.empty());
-        when(cepClient.getCep(anyString())).thenReturn(buildAddress(null));
+        when(cepClient.getAddress(anyString())).thenReturn(buildAddress(null));
         Address address = addressService.getOne(ID);
         verify(addressRepository, times(0)).save(any());
         assertNull(address);

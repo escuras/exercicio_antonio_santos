@@ -6,5 +6,5 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Cep is Invalid.")
 @Status(value = 407, message = "The value of CEP is invalid, 8 characters format.")
-public class CepException extends RuntimeException {
+public class CepException extends CustomException {
 }

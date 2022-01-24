@@ -3,15 +3,17 @@ package com.pt.exercicio.service;
 import com.pt.exercicio.client.CepClient;
 import com.pt.exercicio.model.Address;
 import com.pt.exercicio.repository.AddressRepository;
-import com.pt.exercicio.service.AddressService;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
+@Slf4j
 public class AddressServiceImpl implements AddressService {
 
     private final CepClient cepClient;
@@ -19,9 +21,9 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public Address getOne(String cep) {
-        Optional<Address> optionalAddress = addressRepository.findById(cep);
+        var optionalAddress = addressRepository.findById(cep);
         if (optionalAddress.isEmpty()) {
-            Address address = cepClient.getCep(cep);
+            Address address = cepClient.getAddress(cep);
             if (address.getCep() != null) {
                 address.setId(cep);
                 return addressRepository.save(address);
@@ -32,11 +34,12 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<Address> getAll() {
-       return addressRepository.findAll();
-    }
-
-    private Address save(Address address) {
-        return addressRepository.save(address);
+    public List<Address> getByAddress(String state, String local, String place) {
+        try {
+            return cepClient.getAddress(state, local, place);
+        } catch (FeignException e) {
+            log.error("client returns an error or empty.");
+        }
+        return Collections.emptyList();
     }
 }
