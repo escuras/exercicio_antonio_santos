@@ -12,7 +12,7 @@
 	<artifactId>exercicio</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>exercicio</name>
-	<description>Projeto de exercicio CGD </description>
+	<description>Projeto de exercicio CGD</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud.version>2020.0.5</spring-cloud.version>
@@ -44,6 +44,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
 		<dependency>

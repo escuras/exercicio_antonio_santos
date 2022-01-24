@@ -2,6 +2,8 @@ package com.pt.exercicio.controller;
 
 import com.pt.exercicio.client.CepClient;
 import com.pt.exercicio.model.Address;
+import com.pt.exercicio.repository.AddressRepository;
+import com.pt.exercicio.service.AddressService;
 import com.pt.exercicio.validation.CepValidate;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,13 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/cep")
 public class CepController {
 
-    private final CepClient cepClient;
+    private final AddressService addressService;
 
     @GetMapping(value = "/{cep}")
     public Address getAddress(@PathVariable String cep) {
         CepValidate.validate(cep);
-        Address address = cepClient.getCep(cep);
-        address.addLink();
+        Address address = addressService.getOne(cep);
+        if (address != null) {
+            address.addLink();
+        }
         return address;
     }
 }
