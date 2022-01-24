@@ -1,8 +1,6 @@
 package com.pt.exercicio.controller;
 
-import com.pt.exercicio.client.CepClient;
 import com.pt.exercicio.model.Address;
-import com.pt.exercicio.repository.AddressRepository;
 import com.pt.exercicio.service.AddressService;
 import com.pt.exercicio.validation.CepValidate;
 import lombok.RequiredArgsConstructor;

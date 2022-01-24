@@ -3,6 +3,7 @@ package com.pt.exercicio.service;
 import com.pt.exercicio.client.CepClient;
 import com.pt.exercicio.model.Address;
 import com.pt.exercicio.repository.AddressRepository;
+import com.pt.exercicio.service.AddressService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
-public class AddressServiceImpl implements AddressService{
+public class AddressServiceImpl implements AddressService {
 
     private final CepClient cepClient;
     private final AddressRepository addressRepository;
