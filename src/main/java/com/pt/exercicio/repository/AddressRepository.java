@@ -1,6 +1,6 @@
 package com.pt.exercicio.repository;
 
-import com.pt.exercicio.model.Address;
+import com.pt.exercicio.client.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

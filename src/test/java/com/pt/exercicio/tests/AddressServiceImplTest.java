@@ -1,12 +1,15 @@
 package com.pt.exercicio.tests;
 
 import com.pt.exercicio.client.CepClient;
-import com.pt.exercicio.model.Address;
+import com.pt.exercicio.converter.AddressConverter;
+import com.pt.exercicio.dto.AddressDto;
+import com.pt.exercicio.client.model.Address;
 import com.pt.exercicio.repository.AddressRepository;
 import com.pt.exercicio.service.AddressService;
 import com.pt.exercicio.service.AddressServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.core.convert.ConversionService;
 
 import java.util.Optional;
 
@@ -21,6 +24,7 @@ public class AddressServiceImplTest {
     private CepClient cepClient;
     private AddressRepository addressRepository;
     private AddressService addressService;
+    private ConversionService conversionService;
 
     private final String ID = "11110000";
 
@@ -28,14 +32,16 @@ public class AddressServiceImplTest {
     public void setup() {
         this.addressRepository = mock(AddressRepository.class);
         this.cepClient = mock(CepClient.class);
-        this.addressService = new AddressServiceImpl(cepClient, addressRepository);
+        this.conversionService = mock(ConversionService.class);
+        this.addressService = new AddressServiceImpl(cepClient, addressRepository,conversionService);
 
     }
 
     @Test
     public void whenGetOneOptionalAddressIsEmptyButCepClientReturnsValue(){
         when(addressRepository.findById(anyString())).thenReturn(Optional.empty());
-        when(cepClient.getAddress(anyString())).thenReturn(buildAddress(ID));
+        when(cepClient.getAddress(anyString())).thenReturn(buildAddressDto(ID));
+        when(conversionService.convert(any(AddressDto.class), eq(Address.class))).thenReturn(buildAddress(ID));
         when((addressRepository.save(any()))).thenReturn(buildAddress(ID));
         Address address = addressService.getOne(ID);
         verify(addressRepository, times(1)).save(any());
@@ -45,7 +51,8 @@ public class AddressServiceImplTest {
     @Test
     public void whenGetOneOptionalAddressIsEmptyAndCepClientReturnsNull(){
         when(addressRepository.findById(anyString())).thenReturn(Optional.empty());
-        when(cepClient.getAddress(anyString())).thenReturn(buildAddress(null));
+        when(cepClient.getAddress(anyString())).thenReturn(buildAddressDto(null));
+        when(conversionService.convert(any(AddressDto.class), eq(Address.class))).thenReturn(buildAddress(null));
         Address address = addressService.getOne(ID);
         verify(addressRepository, times(0)).save(any());
         assertNull(address);
@@ -63,6 +70,13 @@ public class AddressServiceImplTest {
         Address address = new Address();
         address.setId(id);
         address.setCep(id);
+        address.setBairro("Benfica");
+        return address;
+    }
+
+    private AddressDto buildAddressDto(String cep) {
+        AddressDto address = new AddressDto();
+        address.setCep(cep);
         address.setBairro("Benfica");
         return address;
     }

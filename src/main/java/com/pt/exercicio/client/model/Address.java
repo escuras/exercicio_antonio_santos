@@ -1,4 +1,4 @@
-package com.pt.exercicio.model;
+package com.pt.exercicio.client.model;
 
 
 import lombok.AllArgsConstructor;

@@ -7,3 +7,6 @@ spring:
     hibernate:
       ddl-auto: update
 
+domain:
+  viacep: http://viacep.com.br/ws
+  viacep-name: viacep
