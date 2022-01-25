@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ProblemDetailsAdvice {
 
     @ExceptionHandler(CustomException.class)
-    public ResponseEntity<?> toProblemDetail(CustomException cepException) {
+    public ResponseEntity<ProblemDetails> toProblemDetail(CustomException cepException) {
         ProblemDetails details = new ProblemDetailsBuilder(cepException).build();
         log.debug(details.toString(), cepException);
         return ResponseEntity.status(details.getStatus())

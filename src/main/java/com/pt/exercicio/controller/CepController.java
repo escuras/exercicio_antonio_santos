@@ -25,7 +25,6 @@ public class CepController {
         AddressValidation.validate(cep);
         Address address = addressService.getOne(cep);
         return addressConverter.convert(address);
-
     }
 
     @GetMapping(value = "/{state}/{local}/{place}")
