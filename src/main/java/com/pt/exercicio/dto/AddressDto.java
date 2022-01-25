@@ -1,6 +1,6 @@
 package com.pt.exercicio.dto;
 
-import com.pt.exercicio.controller.CepController;
+import com.pt.exercicio.resource.CepController;
 import lombok.Data;
 import org.springframework.hateoas.RepresentationModel;
 

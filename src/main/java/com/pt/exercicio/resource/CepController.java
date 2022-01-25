@@ -1,4 +1,4 @@
-package com.pt.exercicio.controller;
+package com.pt.exercicio.resource;
 
 import com.pt.exercicio.dto.AddressDto;
 import com.pt.exercicio.client.model.Address;
