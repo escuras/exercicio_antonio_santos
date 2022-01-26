@@ -1,8 +1,10 @@
 package com.pt.exercicio.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Builder
 public class AddressDto extends ResourceDto {
 
     private String cep;

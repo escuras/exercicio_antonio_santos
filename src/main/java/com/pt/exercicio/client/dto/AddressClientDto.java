@@ -1,11 +1,13 @@
-package com.pt.exercicio.client.model;
+package com.pt.exercicio.client.dto;
 
+import lombok.Builder;
 import lombok.Data;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Data
-public class CepDto {
+@Builder
+public class AddressClientDto {
 
     private String cep;
     private String logradouro;

@@ -13,7 +13,7 @@ public class AddressDtoConverter implements Converter<Address, AddressDto> {
         if (source == null) {
             return null;
         }
-        AddressDto addressDto = new AddressDto();
+        AddressDto addressDto = AddressDto.builder().build();
         addressDto.setBairro(source.getBairro());
         addressDto.setCep(source.getCep());
         addressDto.setComplemento(source.getComplemento());
