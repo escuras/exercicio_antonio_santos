@@ -1,6 +1,6 @@
 package com.pt.exercicio.service;
 
-import com.pt.exercicio.client.model.Address;
+import com.pt.exercicio.model.Address;
 
 import java.util.List;
 

@@ -1,23 +1,11 @@
 package com.pt.exercicio.client.model;
 
-
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Entity
-@Table(name = "addresses")
-public class Address {
-
-    @Id
-    private String id;
+public class CepDto {
 
     private String cep;
     private String logradouro;

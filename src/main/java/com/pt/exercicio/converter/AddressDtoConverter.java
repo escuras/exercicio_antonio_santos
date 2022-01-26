@@ -1,29 +1,29 @@
 package com.pt.exercicio.converter;
 
 import com.pt.exercicio.dto.AddressDto;
-import com.pt.exercicio.client.model.Address;
+import com.pt.exercicio.model.Address;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class AddressDtoConverter implements Converter<AddressDto, Address> {
+public class AddressDtoConverter implements Converter<Address, AddressDto> {
 
     @Override
-    public Address convert(AddressDto source) {
+    public AddressDto convert(Address source) {
         if (source == null) {
             return null;
         }
-        Address address = new Address();
-        address.setBairro(source.getBairro());
-        address.setCep(source.getCep());
-        address.setComplemento(source.getComplemento());
-        address.setDdd(source.getDdd());
-        address.setGia(source.getGia());
-        address.setIbge(source.getIbge());
-        address.setLocalidade(source.getLocalidade());
-        address.setLogradouro(source.getLogradouro());
-        address.setSiafi(source.getSiafi());
-        address.setUf(source.getUf());
-        return address;
+        AddressDto addressDto = new AddressDto();
+        addressDto.setBairro(source.getBairro());
+        addressDto.setCep(source.getCep());
+        addressDto.setComplemento(source.getComplemento());
+        addressDto.setDdd(source.getDdd());
+        addressDto.setGia(source.getGia());
+        addressDto.setIbge(source.getIbge());
+        addressDto.setLocalidade(source.getLocalidade());
+        addressDto.setLogradouro(source.getLogradouro());
+        addressDto.setSiafi(source.getSiafi());
+        addressDto.setUf(source.getUf());
+        return addressDto;
     }
 }

@@ -1,14 +1,9 @@
 package com.pt.exercicio.dto;
 
-import com.pt.exercicio.resource.CepController;
 import lombok.Data;
-import org.springframework.hateoas.RepresentationModel;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @Data
-public class AddressDto extends RepresentationModel<AddressDto> {
+public class AddressDto extends ResourceDto {
 
     private String cep;
     private String logradouro;
@@ -20,13 +15,5 @@ public class AddressDto extends RepresentationModel<AddressDto> {
     private String gia;
     private String ddd;
     private String siafi;
-
-
-    public void addLink() {
-        if (cep != null) {
-            add(linkTo(methodOn(CepController.class).getAddress(this.cep.replace("-", ""))).withSelfRel());
-        }
-    }
-
 
 }
